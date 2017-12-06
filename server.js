@@ -1,6 +1,5 @@
-//サーバー
 var server = require("http").createServer(function (req, res) {
-    res.writeHead(200, { "Content-Type": "text/html" });
+    res.writeHead(200, { "Content-Type": "text/json" });
 }).listen(3001);
 var io = require("socket.io").listen(server);
 console.log('Listen to the stereo tonight! tonight! tonight!')
