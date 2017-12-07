@@ -1,7 +1,10 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
-import { addMessage, currentMessage } from '../actions';
+import { addMessage } from '../actions';
+import * as io from 'socket.io-client';
+let socket = io.connect('http://localhost:3001');
+
 
 const App = (that: any) => {
     let input: any;
@@ -9,7 +12,7 @@ const App = (that: any) => {
         <div>
             <h1>トークしたい</h1>
             <input type='text' ref={(node) => { input = node; }} />
-            <button onClick={() => sendMessage(that.dispatch, input)} >＞</button>
+            <button onClick={() => sendMessage(input)} >＞</button>
             <ul>
                 {talkList(that.state)}
             </ul>
@@ -17,8 +20,8 @@ const App = (that: any) => {
     );
 };
 
-const sendMessage = (dispatch: any, input: any) => {
-    dispatch(addMessage(input.value));
+const sendMessage = (input: any) => {
+    socket.emit('publish', {value: input.value});
 };
 
 const mapToStateProps = (state: any) => {

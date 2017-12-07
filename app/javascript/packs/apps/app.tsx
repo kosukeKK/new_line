@@ -4,6 +4,8 @@ import App from './components/App';
 import { Provider } from 'react-redux';
 import store from './store';
 import { createStore } from 'redux';
+import {webSocketModule} from './sockets';
+webSocketModule();
 
 render(
     <Provider store={store}>
