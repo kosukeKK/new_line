@@ -14,8 +14,8 @@ const addMessage = (action: any) => {
 const rootReducers = (state = [{id: 0, message: ''}], action: any) => {
     switch (action.type) {
         case message.addMessage:
-        let aaa = addMessage(action);
-            return [...state, aaa];
+        let addMessage = addMessage(action);
+            return [...state, addMessage];
         default:
             return state;
     }
